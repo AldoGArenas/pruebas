@@ -21,9 +21,9 @@ Route::get('/hola', function(){
 Route::get('/hola2', function(){
 	return view ('hola');
 });
-Route::get('/formularios', function(){
-	return view ('form');
-});
+Route::get('/form',function(){
+	return view('form');
+ });
 
 Route::get('/adios', function(){
 	return view ('nueva.adios');
@@ -35,5 +35,7 @@ Route::get('hola/{name}', function($name){
 Route::get('/adios/{name}', function($name){
 	return view ('nueva.adios')->with('name',$name);
 });
+Route::get ('contact', 'ContactController@create')-> name ('contact.create');
+Route::post ('contact', 'ContactContrller@store')->name('contact.store');
 
 Route::get ('libros', 'BookController@prueba')->name('libros');
