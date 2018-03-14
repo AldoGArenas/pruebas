@@ -1,5 +1,5 @@
 <?php
-
+use JasperPHP\JasperPHP as JasperPHP;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +35,14 @@ Route::get('hola/{name}', function($name){
 Route::get('/adios/{name}', function($name){
 	return view ('nueva.adios')->with('name',$name);
 });
+Route::get('/compilar', function () {
+	
+	$jasper = new JasperPHP;
+
+	$jasper->compile(base_path().'/vendor/cossou/jasperphp/examples/hello_world.jrxml')->execute();
+	return view('welcome');
+});
+Route::name('print')->get('/imprimir', 'ItemController@imprimir');
 Route::get ('contact', 'ContactController@create')-> name ('contact.create');
 Route::post ('contact', 'ContactContrller@store')->name('contact.store');
 
